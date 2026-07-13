@@ -2,11 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build') {
+            agent {
+                docker agent 'node:18-alpine'
+                reuseNode true
+            }
             steps {
-                echo 'Hello World'
-                sh 'touch test.txt'
-                sh 'echo "this is a tst file" >> test.txt'
+                sh '''
+                     ls -la
+                     node --version
+                     npm --version
+                     npm ci
+                     npm run build
+                     ls -la
+                '''
             }
         }
     }
