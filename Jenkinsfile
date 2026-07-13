@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Hello World'
                 sh 'touch test.txt'
-                sh 'echo "this is a tst file"'
+                sh 'echo "this is a tst file" >> test.txt'
             }
         }
     }
